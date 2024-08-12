@@ -1,0 +1,163 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.full-bar {
+  min-width: 100%;
+}
+
+.dark-background{
+  background-color: rgba(26, 26, 26, 0.9);
+}
+
+.title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  width: 100%;
+  min-height: 36rem;
+  padding-inline: 6%;
+  padding-top: 10%;
+}
+
+.title {
+  letter-spacing: 0.16rem;
+  font-size: calc(2.6rem + 1.26vw);
+  text-align: center;
+}
+
+.t-1 {
+  color: lightslategray;
+  opacity: 0; /* Start hidden */
+  animation-name: fadeInOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 2s;
+  animation-fill-mode: forwards; /* Retain the final state */
+}
+
+.t-2 {
+  color: #860013;
+  opacity: 0; /* Start hidden */
+  animation-name: fadeInOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 2s;
+  animation-delay: 1s; /* Starts halfway through .t-1's animation */
+  animation-fill-mode: forwards; /* Retain the final state */
+}
+
+.t-3 {
+  color: lightslategray;
+  opacity: 0; /* Start hidden */
+  animation-name: fadeInOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 2s;
+  animation-delay: 2s; /* Starts after .t-2's animation is completed */
+  animation-fill-mode: forwards; /* Retain the final state */
+}
+
+.home-buttons{
+  margin-top: 6%;
+  width: 40%;
+  display: flex;
+  justify-content: space-evenly;
+  opacity: 0; /* Start hidden */
+  animation-name: fadeInOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 1s;
+  animation-delay: 2s; /* Starts after .t-2's animation is completed */
+  animation-fill-mode: forwards; /* Retain the final state */
+}
+
+
+@keyframes fadeInOpacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.t-vw {
+  color: white;
+  font-weight: 600;
+}
+
+
+.bg-gti-img{
+  background-image: url("<%= asset_path 'GTI.jpg' %>");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-y: 60%;
+  min-width: 100%;
+}
+
+#all-button{
+  color: white;
+  border: white solid 1px;
+}
+
+#all-button:hover{
+  background-image: url("<%= asset_path 'mod-GTI.jpg' %>");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  transform: scale(106%);
+  text-shadow: 1px 1px black;
+  font-weight: 600;
+}
+
+.form-content{
+  display: grid;
+  grid-template-rows: repeat(auto-fill);
+  min-width: 80%;
+}
+.subject-area{
+  width: 80%;
+  margin-left: 4%;
+}
+
+.text-area{
+  width: 80%;
+  margin-left: 4%;
+}
+
+.form-containers{
+  display: flex;
+  flex-direction: column;
+}
