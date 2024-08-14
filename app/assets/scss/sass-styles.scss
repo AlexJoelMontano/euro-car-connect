@@ -19,6 +19,8 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
+$vw-blue: #2d60a2;
+
 html {
   height: 100%;
   width: 100%;
@@ -55,10 +57,11 @@ body {
   letter-spacing: 0.16rem;
   font-size: calc(2.6rem + 1.26vw);
   text-align: center;
+  font-family: "Racing Sans One", sans-serif;
 }
 
 .t-1 {
-  color: lightslategray;
+  color: $vw-blue;
   opacity: 0; /* Start hidden */
   animation-name: fadeInOpacity;
   animation-iteration-count: 1;
@@ -79,7 +82,7 @@ body {
 }
 
 .t-3 {
-  color: lightslategray;
+  color: $vw-blue;
   opacity: 0; /* Start hidden */
   animation-name: fadeInOpacity;
   animation-iteration-count: 1;
@@ -160,4 +163,56 @@ body {
 .form-containers{
   display: flex;
   flex-direction: column;
+}
+
+.acc-style{
+  border-radius: 6px;
+}
+
+.full-bar .navbar-nav {
+  flex: 1;
+  justify-content: space-evenly;
+}
+
+.full-bar .navbar-collapse {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.content{
+  max-width: 85%;
+  min-width: 80%;
+}
+
+.full-size{
+  width: 100%;
+}
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead th:nth-child(1) {
+  width: 25%;
+}
+
+thead th:nth-child(2) {
+  width: 25%;
+}
+
+thead th:nth-child(3) {
+  width: 25%;
+}
+
+thead th:nth-child(4) {
+  width: 25%;
+}
+
+
+th,
+td {
+  padding: 20px;
 }

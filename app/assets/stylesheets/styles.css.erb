@@ -48,10 +48,11 @@ body {
 .title {
   letter-spacing: 0.16rem;
   font-size: calc(2.6rem + 1.26vw);
-  text-align: center; }
+  text-align: center;
+  font-family: "Racing Sans One", sans-serif; }
 
 .t-1 {
-  color: lightslategray;
+  color: #2d60a2;
   opacity: 0;
   /* Start hidden */
   animation-name: fadeInOpacity;
@@ -75,7 +76,7 @@ body {
   /* Retain the final state */ }
 
 .t-3 {
-  color: lightslategray;
+  color: #2d60a2;
   opacity: 0;
   /* Start hidden */
   animation-name: fadeInOpacity;
@@ -148,5 +149,33 @@ body {
 .form-containers {
   display: flex;
   flex-direction: column; }
+
+.acc-style {
+  border-radius: 6px; }
+
+.content {
+  max-width: 85%;
+  min-width: 80%; }
+
+.full-size {
+  width: 100%; }
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse; }
+
+thead th:nth-child(1) {
+  width: 25%; }
+
+thead th:nth-child(2) {
+  width: 50%; }
+
+thead th:nth-child(3) {
+  width: 15%; }
+
+th,
+td {
+  padding: 20px; }
 
 /*# sourceMappingURL=styles.css.erb.map */

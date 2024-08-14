@@ -1,0 +1,32 @@
+<body class="bg-dark text-light">
+    <!-- app/views/documents/index.html.erb -->
+<h1>Documents</h1>
+
+<table class="table table-dark">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Document</th>
+      <th>Date</th>
+      <th>Size</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @documents.each do |document| %>
+      <tr>
+        <td><%= document.name %></td>
+        <td><%= document.document %></td>
+        <td><%= document.date %></td>
+        <td><%= document.size %></td>
+        <td>
+          <%= link_to 'Show', document_path(document), class: 'btn btn-primary' %>
+          <%= link_to 'Edit', edit_document_path(document), class: 'btn btn-secondary' %>
+          <%= link_to 'Delete', document_path(document), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+</body>
