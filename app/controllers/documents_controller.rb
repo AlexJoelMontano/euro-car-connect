@@ -14,7 +14,7 @@ class DocumentsController < ApplicationController
   def create
     @document = Document.new(document_params)
     if @document.save
-      redirect_to @document, notice: 'Document was successfully created.'
+      redirect_to @document, notice: 'Document was successfully uploaded.'
     else
       render :new
     end

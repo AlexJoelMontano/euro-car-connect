@@ -40,8 +40,9 @@ class PostsController < ApplicationController
   end
 
   def search
-    @query = params[:search]
+    @query = params[:query]
     @posts = Post.where('title LIKE ? OR body LIKE ?', "%#{@query}%", "%#{@query}%")
+    @documents = Document.where('name LIKE ?', "%#{@query}%")
   end
 
   private

@@ -39,7 +39,7 @@ body {
 }
 
 .dark-background{
-  background-color: rgba(26, 26, 26, 0.9);
+  background-color: rgba(26, 26, 26, 0.76);
 }
 
 .title-container {
@@ -66,7 +66,7 @@ body {
   animation-name: fadeInOpacity;
   animation-iteration-count: 1;
   animation-timing-function: ease-in;
-  animation-duration: 2s;
+  animation-duration: 1s;
   animation-fill-mode: forwards; /* Retain the final state */
 }
 
@@ -76,8 +76,8 @@ body {
   animation-name: fadeInOpacity;
   animation-iteration-count: 1;
   animation-timing-function: ease-in;
-  animation-duration: 2s;
-  animation-delay: 1s; /* Starts halfway through .t-1's animation */
+  animation-duration: 1s;
+  animation-delay: 0.6s; /* Starts halfway through .t-1's animation */
   animation-fill-mode: forwards; /* Retain the final state */
 }
 
@@ -88,7 +88,7 @@ body {
   animation-iteration-count: 1;
   animation-timing-function: ease-in;
   animation-duration: 2s;
-  animation-delay: 2s; /* Starts after .t-2's animation is completed */
+  animation-delay:0.6s; /* Starts after .t-2's animation is completed */
   animation-fill-mode: forwards; /* Retain the final state */
 }
 
@@ -102,7 +102,7 @@ body {
   animation-iteration-count: 1;
   animation-timing-function: ease-in;
   animation-duration: 1s;
-  animation-delay: 2s; /* Starts after .t-2's animation is completed */
+  animation-delay: 1s; /* Starts after .t-2's animation is completed */
   animation-fill-mode: forwards; /* Retain the final state */
 }
 
@@ -123,10 +123,10 @@ body {
 
 
 .bg-gti-img{
-  background-image: url("<%= asset_path 'GTI.jpg' %>");
+  background-image: url("<%= asset_path 'VW-bg.jpg' %>");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position-y: 60%;
+  background-position: center;
   min-width: 100%;
 }
 
@@ -166,9 +166,9 @@ body {
 }
 
 .acc-style{
-  border-radius: 6px;
+  margin-top: 6%;
+  border: 2px solid white;
 }
-
 .full-bar .navbar-nav {
   flex: 1;
   justify-content: space-evenly;
@@ -178,7 +178,6 @@ body {
   display: flex;
   justify-content: space-between;
 }
-
 
 .content{
   max-width: 85%;
@@ -196,23 +195,59 @@ table {
 }
 
 thead th:nth-child(1) {
-  width: 25%;
+  width: 30%;
 }
 
 thead th:nth-child(2) {
-  width: 25%;
+  width: 50%;
 }
 
 thead th:nth-child(3) {
-  width: 25%;
+  width: 10%;
 }
 
 thead th:nth-child(4) {
-  width: 25%;
+  width: 10%;
 }
-
 
 th,
 td {
   padding: 20px;
+}
+
+.blog{
+  min-width: 85%;
+  display: grid;
+  grid-template-rows: 1fr 4fr 1fr;
+  grid-template-columns: repeat(auto-fill,30%);
+  grid-template-areas: "title title title"
+                       "body body body"
+                       "back edit delete";
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin center-align($text-align:center){
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: $text-align;
+}
+
+.blog-title{
+  grid-area: title;
+  @include center-align;
+}
+.blog-body{
+  grid-area: body;
+  margin-inline: 6%;
+}
+.blog-edit{
+  grid-area: edit;
+}
+.blog-delete{
+  grid-area: delete;
+}
+.blog-back{
+  grid-area: back;
 }

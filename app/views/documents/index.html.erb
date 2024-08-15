@@ -1,32 +1,56 @@
 <body class="bg-dark text-light">
-    <!-- app/views/documents/index.html.erb -->
-<h1>Documents</h1>
+  <!-- app/views/documents/index.html.erb -->
+  <h1>Documents</h1>
 
-<table class="table table-dark">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Document</th>
-      <th>Date</th>
-      <th>Size</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @documents.each do |document| %>
+  <%= link_to 'Upload Document', new_document_path, class: 'btn btn-primary' %>
+
+  <table class="table table-dark">
+    <thead>
       <tr>
-        <td><%= document.name %></td>
-        <td><%= document.document %></td>
-        <td><%= document.date %></td>
-        <td><%= document.size %></td>
-        <td>
-          <%= link_to 'Show', document_path(document), class: 'btn btn-primary' %>
-          <%= link_to 'Edit', edit_document_path(document), class: 'btn btn-secondary' %>
-          <%= link_to 'Delete', document_path(document), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
-        </td>
+        <th>Name</th>
+        <th>Document</th>
+        <th>Date</th>
+        <th>Size</th>
+        <th>Actions</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @documents.each do |document| %>
+        <tr>
+          <td>
+            <%= link_to document.name, '#', data: { bs_toggle: 'modal', bs_target: "#documentModal#{document.id}" } %>
+          </td>
+          <td>
+            <%= link_to truncate(document.document.filename.to_s, length: 30), rails_blob_path(document.document, disposition: "attachment"), class: 'text-white text-decoration-none' %>
+          </td>
+          <td><%= document.date %></td>
+          <td><%= number_to_human_size(document.size) %></td>
+          <td>
+            <%= link_to 'Show', document_path(document), class: 'btn btn-primary' %>
+            <%= link_to 'Edit', edit_document_path(document), class: 'btn btn-secondary' %>
+            <%= link_to 'Delete', document_path(document), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+          </td>
+        </tr>
 
+        <!-- Modal -->
+        <div class="modal fade" id="documentModal<%= document.id %>" tabindex="-1" aria-labelledby="documentModalLabel<%= document.id %>" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content bg-dark text-light">
+              <div class="modal-header">
+                <h5 class="modal-title" id="documentModalLabel<%= document.id %>"><%= document.name %></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <iframe src="<%= rails_blob_path(document.document, disposition: "inline") %>" width="100%" height="500px"></iframe>
+              </div>
+              <div class="modal-footer">
+                <%= link_to 'Download', rails_blob_path(document.document, disposition: "attachment"), class: 'btn btn-primary' %>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </tbody>
+  </table>
 </body>

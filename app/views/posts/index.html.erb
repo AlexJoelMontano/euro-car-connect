@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= stylesheet_link_tag 'styles', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
@@ -21,8 +19,8 @@
   <div class="accordion accordion-flush bg-dark full-size acc-style" id="blogAccordion">
     <% blogs = Post.all %>
     <% blogs.each_with_index do |post, index| %>
-      <div class="accordion-item bg-dark full-size acc-style">
-        <h2 class="accordion-header full-size acc-style" id="heading<%= index %>">
+      <div class="accordion-item bg-dark full-size">
+        <h2 class="accordion-header full-size" id="heading<%= index %>">
           <button class="accordion-button bg-dark bg-gradient text-white full-size" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= index %>" aria-expanded="true" aria-controls="collapse<%= index %>">
             <%= post.title %>
           </button>
@@ -31,10 +29,11 @@
           <div class="accordion-body bg-dark text-white">
             <%= link_to post_path(post), class: 'text-white text-decoration-none d-block' do %>
               <div class="truncate">
-                <%= truncate(post.body, 66).html_safe %>
+                <%= truncate(post.body, 96).html_safe %>
               </div>
             <% end %>
             <div class="mt-3">
+              <%= link_to 'Go to Blog', post_path(post), class:'btn btn-success' %>
               <%= link_to 'Edit', edit_post_path(post), class: 'btn btn-secondary' %>
               <%= link_to 'Delete', post_path(post), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
             </div>
@@ -43,9 +42,56 @@
       </div>
     <% end %>
   </div>
+
+  <h1>All Documents</h1>
+
+  <%= link_to 'New Document', new_document_path, class: 'btn btn-primary' %>
+
+  <div class="accordion accordion-flush bg-dark full-size acc-style" id="documentAccordion">
+    <% documents = Document.all %>
+    <% documents.each_with_index do |document, index| %>
+      <div class="accordion-item bg-dark full-size">
+        <h2 class="accordion-header full-size" id="docHeading<%= index %>">
+          <button class="accordion-button bg-dark bg-gradient text-white full-size" type="button" data-bs-toggle="collapse" data-bs-target="#docCollapse<%= index %>" aria-expanded="true" aria-controls="docCollapse<%= index %>">
+            <%= document.name %>
+          </button>
+        </h2>
+        <div id="docCollapse<%= index %>" class="accordion-collapse collapse bg-dark" aria-labelledby="docHeading<%= index %>" data-bs-parent="#documentAccordion">
+          <div class="accordion-body bg-dark text-white">
+            <%= link_to document_path(document), class: 'text-white text-decoration-none d-block' do %>
+              <div class="truncate">
+                <%= truncate(document.name, 96).html_safe %>
+              </div>
+            <% end %>
+            <div class="mt-3">
+              <%= link_to 'Edit', edit_document_path(document), class: 'btn btn-secondary' %>
+              <%= link_to 'Delete', document_path(document), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="documentModal<%= document.id %>" tabindex="-1" aria-labelledby="documentModalLabel<%= document.id %>" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content bg-dark text-light">
+            <div class="modal-header">
+              <h5 class="modal-title" id="documentModalLabel<%= document.id %>"><%= document.name %></h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <iframe src="<%= rails_blob_path(document.document, disposition: "inline") %>" width="100%" height="500px"></iframe>
+            </div>
+            <div class="modal-footer">
+              <%= link_to 'Download', rails_blob_path(document.document, disposition: "attachment"), class: 'btn btn-primary' %>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
-
-
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

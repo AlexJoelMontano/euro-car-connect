@@ -35,10 +35,11 @@
           </ul>
         </li>
       </ul>
-      <%= form_with url: search_path, method: :get, class: 'd-flex', role: 'search' do %>
-        <%= text_field_tag :search, nil, class: 'form-control me-2', placeholder: 'Search', aria: { label: 'Search' } %>
-        <%= submit_tag 'Search', class: 'btn btn-outline-secondary' %>
-      <% end %>
+    <%= form_with url: search_path, method: :get, class: 'd-flex', role: 'search' do %>
+    <%= text_field_tag :query, params[:query], class: 'form-control me-2', placeholder: 'Search', aria: { label: 'Search' } %>
+    <%= submit_tag 'Search', class: 'btn btn-outline-secondary' %>
+    <% end %>
+
     </div>
   </div>
 </nav>
