@@ -1,3 +1,51 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0; }
+
+body {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  align-items: center;
+  background-color: #343a40;
+  /* bg-dark */
+  color: #f8f9fa;
+  /* text-light */ }
+
+.preview-container {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-items: center; }
+
+.full-page-iframe {
+  width: 100%;
+  min-height: 600px;
+  border: none; }
+
+.doc-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 10px;
+  width: 60%;
+  justify-content: center; }
+
+#preview {
+  margin-bottom: 6%; }
+
+.mt-3 {
+  margin-top: 1rem; }
+
+/* Responsive design for mobile devices */
+@media (max-width: 768px) {
+  .full-page-iframe {
+    min-height: 400px; }
+
+  .doc-buttons {
+    width: 100%; } }
+/* Existing styles */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -169,9 +217,6 @@ body {
 .full-size {
   width: 100%; }
 
-.headings {
-  margin-top: 6%; }
-
 table {
   table-layout: fixed;
   width: 100%;
@@ -181,7 +226,10 @@ thead th:nth-child(1) {
   width: 30%; }
 
 thead th:nth-child(2) {
-  width: 50%; }
+  width: 50%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; }
 
 thead th:nth-child(3) {
   width: 10%; }
@@ -193,6 +241,38 @@ th,
 td {
   padding: 20px; }
 
+/* Responsive design for mobile devices */
+@media (max-width: 768px) {
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap; }
+
+  thead {
+    display: none; }
+
+  tbody,
+  tr,
+  td {
+    display: block;
+    width: 100%; }
+
+  tr {
+    margin-bottom: 15px; }
+
+  td {
+    text-align: right;
+    padding-left: 50%;
+    position: relative; }
+
+  td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 50%;
+    padding-left: 15px;
+    font-weight: bold;
+    text-align: left; } }
 .blog {
   min-width: 85%;
   display: grid;
@@ -221,5 +301,17 @@ td {
 
 .blog-back {
   grid-area: back; }
+
+.doc-buttons {
+  width: 60%;
+  display: flex;
+  justify-content: space-evenly; }
+
+#preview {
+  margin-bottom: 6%; }
+
+.document-column {
+  overflow-x: scroll;
+  white-space: nowrap; }
 
 /*# sourceMappingURL=styles.css.erb.map */

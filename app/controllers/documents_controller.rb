@@ -1,10 +1,11 @@
 class DocumentsController < ApplicationController
+  before_action :set_document, only: [:show, :edit, :update, :destroy, :delete_document]
+
   def index
     @documents = Document.all
   end
 
   def show
-    @document = Document.find(params[:id])
   end
 
   def new
@@ -21,11 +22,9 @@ class DocumentsController < ApplicationController
   end
 
   def edit
-    @document = Document.find(params[:id])
   end
 
   def update
-    @document = Document.find(params[:id])
     if @document.update(document_params)
       redirect_to @document, notice: 'Document was successfully updated.'
     else
@@ -34,12 +33,20 @@ class DocumentsController < ApplicationController
   end
 
   def destroy
-    @document = Document.find(params[:id])
     @document.destroy
     redirect_to documents_url, notice: 'Document was successfully destroyed.'
   end
 
+  def delete_document
+    @document.document.purge
+    redirect_to @document, notice: 'Document was successfully deleted.'
+  end
+
   private
+
+  def set_document
+    @document = Document.find(params[:id])
+  end
 
   def document_params
     params.require(:document).permit(:name, :document, :date, :size)

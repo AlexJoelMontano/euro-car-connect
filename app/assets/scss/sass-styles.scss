@@ -1,3 +1,60 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  align-items: center;
+  background-color: #343a40; /* bg-dark */
+  color: #f8f9fa; /* text-light */
+}
+
+.preview-container {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-items: center;
+}
+
+.full-page-iframe {
+  width: 100%;
+  min-height: 600px;
+  border: none;
+}
+
+.doc-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 10px;
+  width: 60%;
+  justify-content: center;
+}
+
+#preview {
+  margin-bottom: 6%;
+}
+
+.mt-3 {
+  margin-top: 1rem;
+}
+
+/* Responsive design for mobile devices */
+@media (max-width: 768px) {
+  .full-page-iframe {
+    min-height: 400px;
+  }
+
+  .doc-buttons {
+    width: 100%;
+  }
+}
+
+/* Existing styles */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -38,7 +95,7 @@ body {
   min-width: 100%;
 }
 
-.dark-background{
+.dark-background {
   background-color: rgba(26, 26, 26, 0.76);
 }
 
@@ -88,11 +145,11 @@ body {
   animation-iteration-count: 1;
   animation-timing-function: ease-in;
   animation-duration: 2s;
-  animation-delay:0.6s; /* Starts after .t-2's animation is completed */
+  animation-delay: 0.6s; /* Starts after .t-2's animation is completed */
   animation-fill-mode: forwards; /* Retain the final state */
 }
 
-.home-buttons{
+.home-buttons {
   margin-top: 6%;
   width: 40%;
   display: flex;
@@ -105,7 +162,6 @@ body {
   animation-delay: 1s; /* Starts after .t-2's animation is completed */
   animation-fill-mode: forwards; /* Retain the final state */
 }
-
 
 @keyframes fadeInOpacity {
   0% {
@@ -121,8 +177,7 @@ body {
   font-weight: 600;
 }
 
-
-.bg-gti-img{
+.bg-gti-img {
   background-image: url("<%= asset_path 'VW-bg.jpg' %>");
   background-size: cover;
   background-repeat: no-repeat;
@@ -130,12 +185,12 @@ body {
   min-width: 100%;
 }
 
-#all-button{
+#all-button {
   color: white;
   border: white solid 1px;
 }
 
-#all-button:hover{
+#all-button:hover {
   background-image: url("<%= asset_path 'mod-GTI.jpg' %>");
   background-size: cover;
   background-repeat: no-repeat;
@@ -145,30 +200,32 @@ body {
   font-weight: 600;
 }
 
-.form-content{
+.form-content {
   display: grid;
   grid-template-rows: repeat(auto-fill);
   min-width: 80%;
 }
-.subject-area{
+
+.subject-area {
   width: 80%;
   margin-left: 4%;
 }
 
-.text-area{
+.text-area {
   width: 80%;
   margin-left: 4%;
 }
 
-.form-containers{
+.form-containers {
   display: flex;
   flex-direction: column;
 }
 
-.acc-style{
+.acc-style {
   margin-top: 6%;
   border: 2px solid white;
 }
+
 .full-bar .navbar-nav {
   flex: 1;
   justify-content: space-evenly;
@@ -179,12 +236,12 @@ body {
   justify-content: space-between;
 }
 
-.content{
+.content {
   max-width: 85%;
   min-width: 80%;
 }
 
-.full-size{
+.full-size {
   width: 100%;
 }
 
@@ -200,6 +257,9 @@ thead th:nth-child(1) {
 
 thead th:nth-child(2) {
   width: 50%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 thead th:nth-child(3) {
@@ -215,11 +275,51 @@ td {
   padding: 20px;
 }
 
-.blog{
+/* Responsive design for mobile devices */
+@media (max-width: 768px) {
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tbody,
+  tr,
+  td {
+    display: block;
+    width: 100%;
+  }
+
+  tr {
+    margin-bottom: 15px;
+  }
+
+  td {
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+  }
+
+  td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 50%;
+    padding-left: 15px;
+    font-weight: bold;
+    text-align: left;
+  }
+}
+
+.blog {
   min-width: 85%;
   display: grid;
   grid-template-rows: 1fr 4fr 1fr;
-  grid-template-columns: repeat(auto-fill,30%);
+  grid-template-columns: repeat(auto-fill, 30%);
   grid-template-areas: "title title title"
                        "body body body"
                        "back edit delete";
@@ -227,27 +327,45 @@ td {
   align-items: center;
 }
 
-@mixin center-align($text-align:center){
+@mixin center-align($text-align: center) {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: $text-align;
 }
 
-.blog-title{
+.blog-title {
   grid-area: title;
   @include center-align;
 }
-.blog-body{
+
+.blog-body {
   grid-area: body;
   margin-inline: 6%;
 }
-.blog-edit{
+
+.blog-edit {
   grid-area: edit;
 }
-.blog-delete{
+
+.blog-delete {
   grid-area: delete;
 }
-.blog-back{
+
+.blog-back {
   grid-area: back;
+}
+
+.doc-buttons {
+  width: 60%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#preview {
+  margin-bottom: 6%;
+}
+.document-column {
+  overflow-x: scroll;
+  white-space: nowrap;
 }
