@@ -22,7 +22,11 @@
               <%= link_to document.name, '#', data: { bs_toggle: 'modal', bs_target: "#documentModal#{document.id}" } %>
             </td>
             <td class="col-3 document-column">
-              <%= link_to truncate(document.document.filename.to_s, length: 30), rails_blob_path(document.document, disposition: "attachment"), class: 'text-white text-decoration-none' %>
+              <% if document.document.attached? %>
+                <%= link_to truncate(document.document.filename.to_s, length: 30), rails_blob_path(document.document, disposition: "attachment"), class: 'text-white text-decoration-none' %>
+              <% else %>
+                No document attached
+              <% end %>
             </td>
             <td class="col-2"><%= document.date %></td>
             <td class="col-2"><%= number_to_human_size(document.size) %></td>
@@ -42,10 +46,16 @@
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                  <iframe src="<%= rails_blob_path(document.document, disposition: "inline") %>" width="100%" height="500px"></iframe>
+                  <% if document.document.attached? %>
+                    <iframe src="<%= rails_blob_path(document.document, disposition: "inline") %>" width="100%" height="500px"></iframe>
+                  <% else %>
+                    No document available
+                  <% end %>
                 </div>
                 <div class="modal-footer">
-                  <%= link_to 'Download', rails_blob_path(document.document, disposition: "attachment"), class: 'btn btn-primary' %>
+                  <% if document.document.attached? %>
+                    <%= link_to 'Download', rails_blob_path(document.document, disposition: "attachment"), class: 'btn btn-primary' %>
+                  <% end %>
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
               </div>
