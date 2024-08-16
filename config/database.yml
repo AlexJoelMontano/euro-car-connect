@@ -13,8 +13,4 @@ test:
 
 production:
   <<: *default
-  adapter: postgresql
-  encoding: unicode
-  database: ecc_data
-  username: hacker
-  password: new_password
+  url: <%= ENV['DATABASE_URL'] %>
