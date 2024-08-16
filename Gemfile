@@ -65,3 +65,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+#PostgresSQL
+gem 'pg'
+
+gem 'rails_12factor', group: :production
