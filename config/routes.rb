@@ -3,11 +3,7 @@ Rails.application.routes.draw do
   root 'home#index'
   resources :home
   resources :posts
-  resources :documents do
-    member do
-      delete :delete_document
-    end
-  end
+  resources :documents
   get 'search', to: 'posts#search'
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

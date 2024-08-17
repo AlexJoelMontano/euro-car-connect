@@ -69,49 +69,50 @@
     <%= link_to 'New Document', new_document_path, class: 'btn btn-primary' %>
 
     <div class="accordion accordion-flush bg-dark full-size acc-style" id="documentAccordion">
-      <% documents = Document.all %>
-      <% max_docs_per_div = 6 %> <!-- Change this to the desired amount of docs per page -->
-      <% doc_counter = 0 %>
-      <% doc_div_index = 0 %>
+  <% documents = Document.all %>
+  <% max_docs_per_div = 6 %> <!-- Change this to the desired amount of docs per page -->
+  <% doc_counter = 0 %>
+  <% doc_div_index = 0 %>
 
-      <% documents.each_with_index do |document, index| %>
-        <% if doc_counter % max_docs_per_div == 0 %>
-          <% doc_div_index += 1 %>
-          <div class="doc-hidden-div" id="docHiddenDiv<%= doc_div_index %>" style="display: none;">
-        <% end %>
+  <% documents.each_with_index do |document, index| %>
+    <% if doc_counter % max_docs_per_div == 0 %>
+      <% doc_div_index += 1 %>
+      <div class="doc-hidden-div" id="docHiddenDiv<%= doc_div_index %>" style="display: none;">
+    <% end %>
 
-        <div class="accordion-item bg-dark full-size">
-          <h2 class="accordion-header full-size" id="docHeading<%= index %>">
-            <button class="accordion-button bg-dark bg-gradient text-white full-size" type="button" data-bs-toggle="collapse" data-bs-target="#docCollapse<%= index %>" aria-expanded="true" aria-controls="docCollapse<%= index %>">
-              <%= document.name %>
-            </button>
-          </h2>
-          <div id="docCollapse<%= index %>" class="accordion-collapse collapse bg-dark" aria-labelledby="docHeading<%= index %>" data-bs-parent="#documentAccordion">
-            <div class="accordion-body bg-dark text-white">
-              <%= link_to document_path(document), class: 'text-white text-decoration-none d-block' do %>
-                <div class="truncate">
-                  <%= truncate(document.name, 96).html_safe %>
-                </div>
-              <% end %>
-              <div class="mt-3">
-                <% if document.document.attached? %>
-                  <%= link_to truncate(document.document.filename.to_s, length: 30), rails_blob_path(document.document, disposition: "attachment"), class: 'text-white text-decoration-none' %>
-                <% else %>
-                  <span class="text-muted">No file attached</span>
-                <% end %>
-                <%= link_to 'preview', '#', data: { bs_toggle: 'modal', bs_target: "#documentModal#{document.id}" }, class:'btn btn-secondary' %>
-                <%= link_to 'Delete', document_path(document), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
-              </div>
+    <div class="accordion-item bg-dark full-size">
+      <h2 class="accordion-header full-size" id="docHeading<%= index %>">
+        <button class="accordion-button bg-dark bg-gradient text-white full-size" type="button" data-bs-toggle="collapse" data-bs-target="#docCollapse<%= index %>" aria-expanded="true" aria-controls="docCollapse<%= index %>">
+          <%= document.name %>
+        </button>
+      </h2>
+      <div id="docCollapse<%= index %>" class="accordion-collapse collapse bg-dark" aria-labelledby="docHeading<%= index %>" data-bs-parent="#documentAccordion">
+        <div class="accordion-body bg-dark text-white">
+          <%= link_to document_path(document), class: 'text-white text-decoration-none d-block' do %>
+            <div class="truncate">
+              <%= truncate(document.name, 96).html_safe %>
             </div>
+          <% end %>
+          <div class="mt-3">
+            <% if document.document.attached? %>
+              <%= link_to truncate(document.document.filename.to_s, length: 30), rails_blob_path(document.document, disposition: "attachment"), class: 'text-white text-decoration-none' %>
+            <% else %>
+              <span class="text-muted">No file attached</span>
+            <% end %>
+            <%= link_to 'preview', '#', data: { bs_toggle: 'modal', bs_target: "#documentModal#{document.id}" }, class:'btn btn-secondary' %>
+            <%= link_to 'Delete', document_path(document), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
           </div>
         </div>
-
-        <% doc_counter += 1 %>
-        <% if doc_counter % max_docs_per_div == 0 || index == documents.size - 1 %>
-          </div>
-        <% end %>
-      <% end %>
+      </div>
     </div>
+
+    <% doc_counter += 1 %>
+    <% if doc_counter % max_docs_per_div == 0 || index == documents.size - 1 %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
 
     <div class="btn-group mt-3" role="group" aria-label="Navigation buttons">
       <button id="prevButtonDoc" class="btn btn-outline-secondary"><</button>

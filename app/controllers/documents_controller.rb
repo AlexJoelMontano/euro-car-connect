@@ -33,9 +33,14 @@ class DocumentsController < ApplicationController
   end
 
   def destroy
+    @document = Document.find(params[:id])
     @document.destroy
-    redirect_to documents_url, notice: 'Document was successfully destroyed.'
+    respond_to do |format|
+      format.html { redirect_to documents_url, notice: 'Document was successfully destroyed.' }
+      format.json { head :no_content }
+    end
   end
+
 
   def delete_document
     @document.document.purge

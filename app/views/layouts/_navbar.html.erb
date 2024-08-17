@@ -31,12 +31,15 @@
             <li><%= link_to 'New Document', new_document_path, class: 'dropdown-item' %></li>
           </ul>
         </li>
-        <li class="nav-item w-100 mt-3 mt-lg-0">
+        <li class="nav-item mt-3 mt-lg-0">
           <%= form_with url: search_path, method: :get, class: 'd-flex', role: 'search' do %>
-            <%= text_field_tag :query, params[:query], class: 'form-control me-2', placeholder: 'Search', aria: { label: 'Search' } %>
-            <%= submit_tag 'Search', class: 'btn btn-outline-secondary' %>
+            <div class="input-group">
+              <%= text_field_tag :query, params[:query], class: 'form-control', placeholder: 'Search', aria: { label: 'Search' }, style: 'max-width: 200px;' %>
+              <%= submit_tag 'Search', class: 'btn btn-outline-secondary' %>
+            </div>
           <% end %>
         </li>
+
       </ul>
     </div>
   </div>
