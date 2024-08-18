@@ -1,46 +1,56 @@
 <!-- This is a partial file to be used as a navbar throughout the project -->
 <nav class="navbar navbar-expand-lg bg-body-tertiary full-bar">
   <div class="container-fluid">
-    <%= link_to 'Euro Car Connect', root_path, class: 'navbar-brand' %>
+    <%= link_to 'Euro Car Connect', root_path, class: 'navbar-brand mx-auto' %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <%= link_to 'Home', home_index_path, class: 'nav-link active', aria: { current: 'page' } %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Browse', posts_path, class: 'nav-link' %>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Blogs
-          </a>
-          <ul class="dropdown-menu">
-            <li><%= link_to 'New Blog', new_post_path, class: 'dropdown-item' %></li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Documents
-          </a>
-          <ul class="dropdown-menu">
-            <li><%= link_to 'Repair Documents', documents_path, class: 'dropdown-item' %></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><%= link_to 'New Document', new_document_path, class: 'dropdown-item' %></li>
-          </ul>
-        </li>
-        <li class="nav-item mt-3 mt-lg-0">
-          <%= form_with url: search_path, method: :get, class: 'd-flex', role: 'search' do %>
-            <div class="input-group">
-              <%= text_field_tag :query, params[:query], class: 'form-control', placeholder: 'Search', aria: { label: 'Search' }, style: 'max-width: 200px;' %>
-              <%= submit_tag 'Search', class: 'btn btn-outline-secondary' %>
-            </div>
-          <% end %>
-        </li>
-
-      </ul>
+      <% if user_signed_in? %>
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <%= link_to 'Home', home_index_path, class: 'nav-link', data: { turbo: false } %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Browse', posts_path, class: 'nav-link', data: { turbo: false }, aria: { current: 'page' } %>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Blogs
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to 'New Blog', new_post_path, class: 'dropdown-item' %></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Documents
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to 'Repair Documents', documents_path, class: 'dropdown-item', data: { turbo: false } %></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><%= link_to 'New Document', new_document_path, class: 'dropdown-item' %></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <%= current_user.username %>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <li><%= link_to 'Profile', user_path(current_user), class: 'dropdown-item' %></li>
+              <li><%= link_to 'Logout', logout_path, data: { turbo_method: :delete }, class: 'dropdown-item' %></li>
+            </ul>
+          </li>
+          <li class="nav-item mt-3 mt-lg-0">
+            <%= form_with url: search_path, method: :get, class: 'd-flex', role: 'search' do %>
+              <div class="input-group">
+                <%= text_field_tag :query, params[:query], class: 'form-control', placeholder: 'Search', aria: { label: 'Search' }, style: 'max-width: 200px;' %>
+                <%= submit_tag 'Search', class: 'btn btn-outline-secondary' %>
+              </div>
+            <% end %>
+          </li>
+        </ul>
+      <% end %>
     </div>
   </div>
 </nav>

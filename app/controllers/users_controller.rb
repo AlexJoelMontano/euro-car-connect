@@ -1,4 +1,4 @@
-class HomeController < ApplicationController
+class UsersController < ApplicationController
   def index
     @users = User.all
   end
@@ -36,12 +36,12 @@ class HomeController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    redirect_to home_index_path, notice: "Your account was permenantly deleted."
+    redirect_to home_index_path, notice: "Your account was permanently deleted."
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:username)
+    params.require(:user).permit(:name, :username, :email, :password)
   end
 end

@@ -4,6 +4,7 @@ import "controllers"
 //= require rails-ujs
 
 
+
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.toggle-text').forEach(function(button) {
       button.addEventListener('click', function() {
@@ -22,5 +23,21 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
     });
+  });
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    const loginForm = document.getElementById('login-form');
+    const emailField = document.querySelector('input[name="email"]');
+    const passwordField = document.querySelector('input[name="password"]');
+  
+    if (loginForm) {
+      loginForm.addEventListener('submit', function (event) {
+        if (emailField.classList.contains('is-invalid')) {
+          emailField.focus();
+        } else if (passwordField.classList.contains('is-invalid')) {
+          passwordField.focus();
+        }
+      });
+    }
   });
   
