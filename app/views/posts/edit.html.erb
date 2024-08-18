@@ -27,7 +27,7 @@
       <%= form.text_area :body, class: 'text-area', placeholder: 'Enter your text here...', rows: 12 %>
     </div>
   </fieldset>
-  <%= link_to 'Back', posts_path, class: 'btn btn-primary' %>
+  <%= link_to 'Back', posts_path, class: 'btn btn-primary', data: { turbo: false } %>
   <button type="submit" class="btn btn-outline-secondary">Save</button>
 <% end %>
 </div>
