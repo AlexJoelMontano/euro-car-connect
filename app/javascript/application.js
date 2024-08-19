@@ -1,6 +1,9 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 import "@hotwired/turbo-rails"
 import "controllers"
+import "popper"
+import "bootstrap"
+
 //= require rails-ujs
 
 
@@ -48,4 +51,15 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
   
+  document.addEventListener('DOMContentLoaded', function () {
+    var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'))
+    var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
+      return new bootstrap.Dropdown(dropdownToggleEl)
+    })
+  
+    var modalElementList = [].slice.call(document.querySelectorAll('.modal'))
+    var modalList = modalElementList.map(function (modalEl) {
+      return new bootstrap.Modal(modalEl)
+    })
+  })
   
