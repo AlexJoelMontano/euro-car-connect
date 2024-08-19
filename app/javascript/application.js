@@ -52,14 +52,10 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   
   document.addEventListener('DOMContentLoaded', function () {
-    var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'))
-    var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
-      return new bootstrap.Dropdown(dropdownToggleEl)
-    })
+    const dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'));
+    const dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
+      return new bootstrap.Dropdown(dropdownToggleEl);
+    });
+  });
   
-    var modalElementList = [].slice.call(document.querySelectorAll('.modal'))
-    var modalList = modalElementList.map(function (modalEl) {
-      return new bootstrap.Modal(modalEl)
-    })
-  })
   
