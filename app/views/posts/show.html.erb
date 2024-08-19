@@ -18,7 +18,7 @@
     <h1 class="blog-title"><%= @post.title %></h1>
     <div class="blog-body"><%= @post.body.html_safe %></div>
     
-    <%= link_to 'Edit', edit_post_path(@post), class: 'btn btn-secondary blog-edit' %>
+    <%= link_to 'Edit', edit_post_path(@post), class: 'btn btn-secondary blog-edit', data: { turbo: false } %>
     
     <%= form_with(model: @post, method: :delete, local: true, class:'blog-delete') do %>
       <%= submit_tag 'Delete', data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>

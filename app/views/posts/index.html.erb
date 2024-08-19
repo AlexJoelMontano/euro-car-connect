@@ -46,8 +46,8 @@
               <% end %>
               <div class="mt-3">
                 <%= link_to 'Go to Blog', post_path(post), class:'btn btn-success' %>
-                <%= link_to 'Edit', edit_post_path(post), class: 'btn btn-secondary' %>
-                <%= link_to 'Delete', post_path(post), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+                <%= link_to 'Edit', edit_post_path(post), class: 'btn btn-secondary', data: { turbo: false } %>
+                <%= link_to 'Delete', post_path(post), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger', data: { turbo: false } %>
               </div>
             </div>
           </div>

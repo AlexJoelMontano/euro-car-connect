@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
   });
-  
+
   document.addEventListener('DOMContentLoaded', function () {
     const loginForm = document.getElementById('login-form');
     const emailField = document.querySelector('input[name="email"]');
@@ -40,4 +40,12 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     }
   });
+
+  document.addEventListener('DOMContentLoaded', function () {
+    let iframe = document.querySelector('iframe');
+    if (iframe) {
+      iframe.src = iframe.src;
+    }
+  });
+  
   
