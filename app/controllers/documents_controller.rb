@@ -1,6 +1,8 @@
 class DocumentsController < ApplicationController
   before_action :set_document, only: [:show, :edit, :update, :destroy, :delete_document]
 
+  layout 'application'
+
   def index
     @documents = Document.all
   end

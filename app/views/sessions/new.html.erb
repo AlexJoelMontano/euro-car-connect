@@ -15,7 +15,7 @@
     <%= form.password_field :password, class: 'form-control' %>
   </div>
   <div class="form-group">
-    <%= form.submit 'Login', class: 'btn btn-primary' %>
+    <%= form.submit 'Login', class: 'btn btn-primary', data: { turbo: false } %>
   </div>
 <% end %>
 </body>

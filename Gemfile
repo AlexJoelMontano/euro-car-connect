@@ -75,3 +75,5 @@ gem "sentry-ruby"
 gem "sentry-rails"
 
 gem 'bcrypt', '~> 3.1.5'
+gem 'bootstrap', '~> 5.0.2'
+gem 'popper_js', '~> 2.0'
