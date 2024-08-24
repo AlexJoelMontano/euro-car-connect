@@ -1,9 +1,11 @@
 <body class="bg-dark text-light">
     <h1>Hello, <%= current_user.name %></h1>
-    <div class="account-info bg-dark bg-gradient text-light">
-        <p>Username: <%=link_to current_user.username, edit_user_path, data: { turbo: false } %></p>
-        <p>Email: <%= link_to current_user.email, edit_user_path, data: { turbo: false }%></p>
+    <div class="container p-4 bg-dark bg-gradient text-light">
+        <p class="row col">Username: <%=link_to current_user.username, edit_user_path, data: { turbo: false }, class: 'col' %></p>
+        <p class="row col">Email: <%= link_to current_user.email, edit_user_path, data: { turbo: false }, class: 'col' %></p>
+        <div class="container">
         <%= link_to 'Edit account', edit_user_path, data: { turbo: false }, class: 'btn btn-success' %>
         <%= link_to 'Delete Account', user_path(current_user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+        </div>
     </div>
 </body>
