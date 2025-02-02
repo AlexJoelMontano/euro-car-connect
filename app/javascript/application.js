@@ -63,7 +63,7 @@ document.addEventListener('turbo:load', function () {
   });
 });
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener('turbo:load', function() {
   // Function to handle edit button click
   function handleEditButtonClick(event) {
     const targetSelector = event.target.getAttribute("data-target");

@@ -1,32 +1,24 @@
 <h1>All Listings</h1>
-<%= link_to 'New Listing', new_listing_path, class: 'btn btn-primary' %>
+<%= link_to 'New Listing', new_listing_path, class: 'btn btn-primary mb-3' %>
 
-<div class="accordion accordion-flush bg-dark full-size acc-style" id="listingAccordion">
-  <% listings = Listing.all %>
-  <% max_items_per_div = 6 %> <!-- Change this number to your desired maximum -->
-  <% counter = 0 %>
-  <% div_index = 0 %>
-
-  <% listings.each_with_index do |listing, index| %>
-    <% if counter % max_items_per_div == 0 %>
-      <% div_index += 1 %>
-      <div class="hidden-div" id="hiddenDiv<%= div_index %>" style="display: none;">
-    <% end %>
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="headingListing<%= index %>">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseListing<%= index %>" aria-expanded="false" aria-controls="collapseListing<%= index %>">
-          <%= listing.title %>
-        </button>
-      </h2>
-      <div id="collapseListing<%= index %>" class="accordion-collapse collapse" aria-labelledby="headingListing<%= index %>" data-bs-parent="#listingAccordion">
-        <div class="accordion-body">
-          <%= listing.body %>
+<div class="container bg-dark text-light">
+  <div class="row listings-container justify-content-center">
+    <% listings = Listing.all %>
+    <% listings.each_with_index do |listing, index| %>
+      <div class="col-md-5 mb-4"> <!-- Adjusted margin-bottom for spacing between rows -->
+        <div class="card bg-dark bg-gradient text-light listing-cards h-100"> <!-- h-100 ensures cards have equal height -->
+          <div class="card-header">
+            <%= listing.title %>
+          </div>
+          <div class="card-body">
+            <% if listing.image.present? %>
+              <%= image_tag listing.image, class: 'card-img-top img-fluid', alt: listing.title %>
+            <% end %>
+            <p class="card-text"><%= truncate(listing.body, length: 140, separator: ' ') %></p>
+            <%= link_to 'View Listing', listing_path(listing), class: 'btn btn-primary' %>
+          </div>
         </div>
       </div>
-    </div>
-    <% counter += 1 %>
-    <% if counter % max_items_per_div == 0 || index == listings.size - 1 %>
-      </div>
     <% end %>
-  <% end %>
+  </div>
 </div>

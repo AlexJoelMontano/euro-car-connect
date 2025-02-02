@@ -1,2 +1,12 @@
+/*
+ *= require_tree .
+ *= require_self
+ */
+
+// app/assets/stylesheets/application.scss
+
+// Import Bootstrap
 @import "bootstrap";
-@import "styles"; // Assuming you have additional styles in styles.scss
+
+// Import custom styles
+@import "sass-styles";

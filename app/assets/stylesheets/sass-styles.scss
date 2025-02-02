@@ -388,12 +388,33 @@ td {
 #preview {
   margin-bottom: 6%;
 }
+
 .document-column {
   overflow-x: scroll;
   white-space: nowrap;
 }
 
-.account-info{
+.account-info {
   width: 75%;
 }
 
+.container-custom {
+  width: 90%;
+  margin: 0 auto; // Center the container
+}
+
+.listings-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; // Ensure space between columns
+}
+
+.col-custom {
+  flex: 0 0 45%; // Ensure each column takes up 45% of the container width
+  max-width: 45%;
+  margin-bottom: 1rem; // Add margin at the bottom for spacing between rows
+}
+
+.listing-cards {
+  // Add any additional styles for the cards here
+}
