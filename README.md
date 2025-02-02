@@ -2,18 +2,18 @@
 Unite.Share.Drive.
 
 ## Overview
-**Euro-Car-Connect** is the ultimate destination for European car enthusiasts, bringing together everything you love and need into one dynamic community. Whether you're a seasoned gearhead or just starting your automotive journey, our platform connects you with like-minded individuals and invaluable resources to fuel your passion.
+**Euro Car Connect** is the ultimate destination for European car enthusiasts, bringing together everything you love and need into one dynamic community. Whether you're a seasoned gearhead or just starting your automotive journey, our platform connects you with like-minded individuals and invaluable resources to fuel your passion.
 
 ## Features
-- 🚗 Vibrant Community Forums: Engage in lively discussions, share experiences, and exchange knowledge with fellow enthusiasts. From performance tuning to classic restorations, our forums cover every aspect of European cars.
+- 🚗 **Vibrant Community Forums**: Engage in lively discussions, share experiences, and exchange knowledge with fellow enthusiasts. From performance tuning to classic restorations, our forums cover every aspect of European cars.
 
-- 🔍 In-Depth Parts Reviews: Make informed decisions with comprehensive reviews on the latest parts and accessories. Benefit from community insights and firsthand experiences to ensure you're investing in the best for your vehicle.
+- 🔍 **In-Depth Parts Reviews**: Make informed decisions with comprehensive reviews on the latest parts and accessories. Benefit from community insights and firsthand experiences to ensure you're investing in the best for your vehicle.
 
-- 🎥 Detailed Installation Videos: Access a library of step-by-step installation guides and tutorials. Whether you're upgrading your suspension or installing new tech, our videos make complex installations approachable.
+- 🎥 **Detailed Installation Videos**: Access a library of step-by-step installation guides and tutorials. Whether you're upgrading your suspension or installing new tech, our videos make complex installations approachable.
 
-- 📚 Extensive Repair Documents: Tackle repairs with confidence using our collection of manuals and documents. Find specifications, diagrams, and expert tips to help you maintain and restore your car.
+- 📚 **Extensive Repair Documents**: Tackle repairs with confidence using our collection of manuals and documents. Find specifications, diagrams, and expert tips to help you maintain and restore your car.
 
-- 🛍️ Local & Merchant Listings: Discover trusted local shops, dealers, and merchants specializing in European cars. Connect with providers in your area for services, parts, and exclusive deals.
+- 🛍️ **Local & Merchant Listings**: Discover trusted local shops, dealers, and merchants specializing in European cars. Connect with providers in your area for services, parts, and exclusive deals.
 
 ## Table of Contents
 
@@ -69,17 +69,17 @@ rails server
 Open your web browser and navigate to **http://localhost:3000**
 
 ## Usage
-- Sign Up: Create an account to join the community.
+- **Sign Up**: Create an account to join the community.
 
-- Explore Forums: Participate in discussions and share your knowledge.
+- **Explore Forums**: Participate in discussions and share your knowledge.
 
-- Review Parts: Read and write reviews on various parts and accessories.
+- **Review Parts**: Read and write reviews on various parts and accessories.
 
-- Watch Installation Videos: Learn how to install parts with comprehensive tutorials.
+- **Watch Installation Videos**: Learn how to install parts with comprehensive tutorials.
 
-- Access Repair Documents: Download manuals and guides for your vehicle.
+- **Access Repair Documents**: Download manuals and guides for your vehicle.
 
-- Browse Listings: Find local merchants and listings relevant to your interests.
+- **Browse Listings**: Find local merchants and listings relevant to your interests.
 
 ## File Structure
 Here's an overview of the key components of the project:
@@ -171,5 +171,5 @@ For questions, suggestions, or feedback, please reach out to me:
     - **Email**: alexjoelmontano@gmail.com
     - **Github**: alexjoelmontano
 
-We appreciate your interest in Euro-Car-Connect and look forward to building a thriving community together!
+We appreciate your interest in **Euro Car Connect** and look forward to building a thriving community together!
 --- 
