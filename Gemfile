@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "3.2.2"
+ruby "3.2.3"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3", ">= 7.1.3.4"
@@ -65,15 +65,21 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
-#PostgresSQL
+
+# PostgreSQL
 gem 'pg'
 
-gem 'rails_12factor', group: :production
+group :production do
+  gem 'rails_12factor'
+end
 
 gem "stackprof"
 gem "sentry-ruby"
 gem "sentry-rails"
 
 gem 'bcrypt', '~> 3.1.5'
-gem 'bootstrap', '~> 5.0.2'
+gem 'bootstrap', '~> 5.3.3'
 gem 'popper_js', '~> 2.0'
+gem 'devise'
+gem 'pundit'
+gem 'sassc-rails'

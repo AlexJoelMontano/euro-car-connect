@@ -30,29 +30,18 @@
           <% div_index += 1 %>
           <div class="hidden-div" id="hiddenDiv<%= div_index %>" style="display: none;">
         <% end %>
-
-        <div class="accordion-item bg-dark">
+        <div class="accordion-item">
           <h2 class="accordion-header" id="heading<%= index %>">
-            <button class="accordion-button bg-dark bg-gradient text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= index %>" aria-expanded="true" aria-controls="collapse<%= index %>">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= index %>" aria-expanded="false" aria-controls="collapse<%= index %>">
               <%= post.title %>
             </button>
           </h2>
-          <div id="collapse<%= index %>" class="accordion-collapse collapse bg-dark" aria-labelledby="heading<%= index %>" data-bs-parent="#blogAccordion">
-            <div class="accordion-body bg-dark text-white">
-              <%= link_to post_path(post), class: 'text-white text-decoration-none d-block' do %>
-                <div class="truncate">
-                  <%= truncate(post.body, 96).html_safe %>
-                </div>
-              <% end %>
-              <div class="mt-3">
-                <%= link_to 'Go to Blog', post_path(post), class:'btn btn-success' %>
-                <%= link_to 'Edit', edit_post_path(post), class: 'btn btn-secondary', data: { turbo: false } %>
-                <%= link_to 'Delete', post_path(post), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger', data: { turbo: false } %>
-              </div>
+          <div id="collapse<%= index %>" class="accordion-collapse collapse" aria-labelledby="heading<%= index %>" data-bs-parent="#blogAccordion">
+            <div class="accordion-body">
+              <%= post.body %>
             </div>
           </div>
         </div>
-
         <% counter += 1 %>
         <% if counter % max_items_per_div == 0 || index == blogs.size - 1 %>
           </div>
@@ -60,9 +49,45 @@
       <% end %>
     </div>
 
-    <div class="btn-group mt-3" role="group" aria-label="Navigation buttons">
-      <button id="prevButton" class="btn btn-outline-secondary"><</button>
-      <button id="nextButton" class="btn btn-outline-secondary">></button>
+    <h1 class="headings">All Listings</h1>
+    <%= link_to 'New Listing', new_listing_path, class: 'btn btn-primary' %>
+
+    <div class="accordion accordion-flush bg-dark full-size acc-style" id="listingAccordion">
+      <% listings = Listing.all %>
+      <% max_items_per_div = 6 %> <!-- Change this number to your desired maximum -->
+      <% counter = 0 %>
+      <% div_index = 0 %>
+
+      <% listings.each_with_index do |listing, index| %>
+        <% if counter % max_items_per_div == 0 %>
+          <% div_index += 1 %>
+          <div class="hidden-div" id="hiddenDiv<%= div_index %>" style="display: none;">
+        <% end %>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingListing<%= index %>">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseListing<%= index %>" aria-expanded="false" aria-controls="collapseListing<%= index %>">
+              <%= listing.title %>
+            </button>
+          </h2>
+          <div id="collapseListing<%= index %>" class="accordion-collapse collapse" aria-labelledby="headingListing<%= index %>" data-bs-parent="#listingAccordion">
+            <div class="accordion-body">
+              <%= listing.body %>
+              <% if listing.image.attached? %>
+                <div>
+                  <%= image_tag listing.image %>
+                </div>
+              <% end %>
+              <div>
+                <%= link_to listing.url, listing.url, target: "_blank" %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% counter += 1 %>
+        <% if counter % max_items_per_div == 0 || index == listings.size - 1 %>
+          </div>
+        <% end %>
+      <% end %>
     </div>
 
     <h1 class="headings">All Documents</h1>

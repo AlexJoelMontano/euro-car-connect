@@ -1,11 +1,13 @@
 class ApplicationController < ActionController::Base
-  helper_method :current_user, :user_signed_in?
+  before_action :authenticate_user!
+  include Pundit
 
-  def current_user
-    @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
-  end
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
-  def user_signed_in?
-    !!current_user
+  private
+
+  def user_not_authorized
+    flash[:alert] = "You are not authorized to perform this action."
+    redirect_to(request.referrer || root_path)
   end
 end

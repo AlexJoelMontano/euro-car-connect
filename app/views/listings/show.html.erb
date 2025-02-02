@@ -1,0 +1,24 @@
+<p>
+  <strong>Title:</strong>
+  <%= @listing.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @listing.body %>
+</p>
+
+<p>
+  <strong>URL:</strong>
+  <%= link_to @listing.url, @listing.url, target: "_blank" %>
+</p>
+
+<% if @listing.image.attached? %>
+  <p>
+    <strong>Image:</strong><br>
+    <%= image_tag @listing.image %>
+  </p>
+<% end %>
+
+<%= link_to 'Edit', edit_listing_path(@listing), class: 'btn btn-primary' %> |
+<%= link_to 'Back', listings_path, class: 'btn btn-secondary' %>

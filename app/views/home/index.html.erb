@@ -22,8 +22,11 @@
             <h1 class="title t-1">Built by <span class="t-vw">V</span>olks<span class="t-vw">w</span>agen Enthusiasts</h1>
             <h1 class="title t-2">For</h1>
             <h1 class="title t-3"><span class="t-vw">V</span>olks<span class="t-vw">w</span>agen Enthusiasts</h1>
+            <p class="short-description text-center t-vw">Inside you will find community advice, repair documents, parts review, and much more...</p>
+            <h4 class="join-today t-1">Join the community today!</h4>
             <div class="home-buttons">
-                <%= link_to 'Register', new_user_path, class: 'btn btn-secondary' %>
+                <!-- Register Button -->
+                <%= link_to 'Register', new_user_registration_path, class: 'btn btn-secondary' %>
                 <!-- Login Button -->
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal">
                     Login
@@ -46,7 +49,7 @@
             <%= @error_message %>
           </div>
         <% end %>
-        <%= form_with(url: login_path, local: true, id: "login-form") do |form| %>
+        <%= form_with(url: new_user_session_path, local: true, id: "login-form") do |form| %>
           <div class="form-group">
             <%= form.label :email %>
             <%= form.email_field :email, class: "form-control #{'is-invalid' if @error_message}" %>
@@ -56,7 +59,11 @@
             <%= form.password_field :password, class: "form-control #{'is-invalid' if @error_message}" %>
           </div>
           <div class="form-group">
-            <%= form.submit 'Login', class: 'btn btn-primary', data: { turbo: false } %>
+            <%= form.check_box :remember_me %>
+            <%= form.label :remember_me, "Remember me" %>
+          </div>
+          <div class="actions">
+            <%= form.submit "Log in", class: 'btn btn-primary' %>
           </div>
         <% end %>
       </div>
