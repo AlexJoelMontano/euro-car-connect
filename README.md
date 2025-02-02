@@ -84,6 +84,8 @@ Open your web browser and navigate to **http://localhost:3000**
 ## File Structure
 Here's an overview of the key components of the project:
 
+<pre>
+<code>
 app/
 ├── assets/
 │   ├── images/                   # Logo and background images
@@ -125,6 +127,8 @@ app/
 │   ├── migrate/                  # Database migrations
 │   └── schema.rb                 # Database schema
 ...
+</code>
+</pre>
 
 ## Contributing 
 We welcome contributions to Euro Car Connect! Here's how you can help:
