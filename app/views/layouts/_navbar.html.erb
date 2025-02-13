@@ -19,17 +19,7 @@
         <li class="nav-item">
           <%= link_to 'Listings', listings_path, class: 'nav-link' %>
         </li>
-      </ul>
-      <ul class="navbar-nav ml-auto">
         <% if user_signed_in? %>
-         <li class="nav-item">
-          <%= form_with url: search_path, method: :get, class: 'd-flex', role: 'search' do %>
-            <div class="input-group">
-              <%= text_field_tag :query, params[:query], class: 'form-control', placeholder: 'Search', aria: { label: 'Search' }, style: 'max-width: 200px;' %>
-              <%= submit_tag 'Search', class: 'btn btn-outline-secondary' %>
-            </div>
-          <% end %>
-          </li>
           <li class="nav-item">
             <%= link_to 'Profile', edit_user_registration_path, class: 'nav-link' %>
           </li>
@@ -37,6 +27,14 @@
             <button type="button" class="btn btn-link nav-link" data-bs-toggle="modal" data-bs-target="#logoutModal">
               Logout
             </button>
+          </li>
+          <li class="nav-item">
+          <%= form_with url: search_path, method: :get, class: 'd-flex', role: 'search' do %>
+            <div class="input-group">
+              <%= text_field_tag :query, params[:query], class: 'form-control bg-light bg-gradient', placeholder: 'Search', aria: { label: 'Search' }, style: 'max-width: 200px;' %>
+              <%= submit_tag 'Search', class: 'btn btn-outline-secondary' %>
+            </div>
+          <% end %>
           </li>
         <% else %>
           <li class="nav-item">

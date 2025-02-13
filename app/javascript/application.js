@@ -1,17 +1,16 @@
-// app/assets/javascripts/application.js
 import "@hotwired/turbo-rails";
 import "controllers";
 import 'bootstrap';
 import 'popper.js';
-import Rails from "@rails/ujs"
-import Turbolinks from "turbolinks"
-import * as ActiveStorage from "@rails/activestorage"
-import "channels"
-import "./edit_user_form"
+import Rails from "@rails/ujs";
+import Turbolinks from "turbolinks";
+import * as ActiveStorage from "@rails/activestorage";
+import "channels";
+import "./edit_user_form";
 
-Rails.start()
-Turbolinks.start()
-ActiveStorage.start()
+Rails.start();
+Turbolinks.start();
+ActiveStorage.start();
 
 document.addEventListener('turbo:load', function() {
   document.querySelectorAll('.toggle-text').forEach(function(button) {
@@ -23,11 +22,9 @@ document.addEventListener('turbo:load', function() {
       if (fullText.style.display === 'none') {
         fullText.style.display = 'block';
         truncatedText.style.display = 'none';
-        this.textContent = 'Less';
       } else {
         fullText.style.display = 'none';
         truncatedText.style.display = 'block';
-        this.textContent = 'More';
       }
     });
   });

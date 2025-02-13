@@ -20,5 +20,8 @@
   </p>
 <% end %>
 
-<%= link_to 'Edit', edit_listing_path(@listing), class: 'btn btn-primary' %> |
+<%= link_to 'Edit', edit_listing_path(@listing), class: 'btn btn-primary' %>
+<%= form_with(model: @Listing, method: :delete, local: true) do %>
+    <%= submit_tag 'Delete', data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+<% end %>
 <%= link_to 'Back', listings_path, class: 'btn btn-secondary' %>

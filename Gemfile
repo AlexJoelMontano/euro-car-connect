@@ -83,3 +83,6 @@ gem 'popper_js', '~> 2.0'
 gem 'devise'
 gem 'pundit'
 gem 'sassc-rails'
+gem 'truncate_html'
+
+gem "rspec-rails", "~> 7.1", :group => :test

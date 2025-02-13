@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_post, only: %i[show edit update destroy]
 
   def index
@@ -25,23 +26,10 @@ class PostsController < ApplicationController
     end
   end
 
-  def edit
-    authorize @post
-  end
-
-  def update
-    authorize @post
-    if @post.update(post_params)
-      redirect_to @post, notice: "Post was successfully updated."
-    else
-      render :edit
-    end
-  end
-
   def destroy
     authorize @post
     @post.destroy
-    redirect_to posts_path, notice: "Post was successfully deleted."
+    redirect_to posts_path, notice: 'Post was successfully deleted.'
   end
 
   private

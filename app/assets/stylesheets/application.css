@@ -1,0 +1,13 @@
+/* app/assets/stylesheets/application.css */
+
+/*
+ *= require_self
+ *= require_tree .
+ */
+
+/* Import Bootstrap */
+@import "bootstrap";
+
+/* Import custom styles */
+@import "sass-styles";
+@import "styles.css.erb"; /* Assuming styles.css.erb contains CSS code */

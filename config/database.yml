@@ -8,7 +8,31 @@ development:
 
 test:
   <<: *default
+  adapter: sqlite3default: &default
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
   adapter: sqlite3
+  database: storage/development.sqlite3
+
+test:
+  <<: *default
+  adapter: sqlite3
+  database: storage/test.sqlite3
+
+production:
+  <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
+
+ci:
+  <<: *default
+  adapter: postgresql
+  database: <%= ENV['CI_DB_NAME'] %>
+  username: <%= ENV['CI_DB_USER'] %>
+  password: <%= ENV['CI_DB_PASSWORD'] %>
+  host: <%= ENV['CI_DB_HOST'] %>
+  port: <%= ENV['CI_DB_PORT'] %>
   database: storage/test.sqlite3
 
 production:

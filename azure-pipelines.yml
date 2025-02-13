@@ -1,0 +1,40 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  RAILS_ENV: test
+  CI_DB_NAME: your_db
+  CI_DB_USER: your_user
+  CI_DB_PASSWORD: your_password
+  CI_DB_HOST: your_vm_ip_address
+  CI_DB_PORT: 5432
+
+steps:
+- task: UseRubyVersion@0
+  inputs:
+    versionSpec: '2.7.x'
+    addToPath: true
+
+- script: |
+    gem install bundler
+    bundle install
+  displayName: 'Install dependencies'
+
+- script: |
+    sudo apt-get install -y postgresql-client
+  displayName: 'Install PostgreSQL client'
+
+- script: |
+    PGPASSWORD=$(CI_DB_PASSWORD) psql -h $(CI_DB_HOST) -U $(CI_DB_USER) -c "CREATE DATABASE $(CI_DB_NAME);"
+  displayName: 'Set up database'
+
+- script: |
+    bundle exec rails db:create db:schema:load
+  displayName: 'Create and load database schema'
+
+- script: |
+    bundle exec rails test
+  displayName: 'Run tests'

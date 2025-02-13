@@ -1,18 +1,24 @@
 class ListingsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :set_listing, only: %i[show edit update destroy]
+
   def index
-    @listings = Listing.all
+    @listings = policy_scope(Listing)
   end
 
   def show
-    @listing = Listing.find(params[:id])
+    authorize @listing
   end
 
   def new
     @listing = Listing.new
+    authorize @listing
   end
 
   def create
     @listing = Listing.new(listing_params)
+    @listing.user = current_user
+    authorize @listing
     if @listing.save
       redirect_to @listing, notice: "Listing was successfully created."
     else
@@ -20,28 +26,19 @@ class ListingsController < ApplicationController
     end
   end
 
-  def edit
-    @listing = Listing.find(params[:id])
-  end
-
-  def update
-    @listing = Listing.find(params[:id])
-    if @listing.update(listing_params)
-      redirect_to @listing, notice: "Listing was successfully updated."
-    else
-      render :edit
-    end
-  end
-
   def destroy
-    @listing = Listing.find(params[:id])
+    authorize @listing
     @listing.destroy
-    redirect_to listings_path, notice: "Listing was successfully deleted."
+    redirect_to listings_path, notice: 'Listing was successfully deleted.'
   end
 
   private
 
+  def set_listing
+    @listing = Listing.find(params[:id])
+  end
+
   def listing_params
-    params.require(:listing).permit(:title, :body, :image, :url)
+    params.require(:listing).permit(:title, :body, :image)
   end
 end

@@ -2,11 +2,12 @@ module ApplicationHelper
   def truncate(text, limit)
     return text unless limit.is_a?(Integer)
 
-    words = text.split
-    if words.size > limit
-      words[0...limit].join(' ') + '...'
+    if text.length > limit
+      truncated_text = text[0, limit] + '...'
     else
-      text
+      truncated_text = text
     end
+
+    truncated_text.html_safe
   end
 end
