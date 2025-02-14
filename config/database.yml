@@ -8,16 +8,6 @@ development:
 
 test:
   <<: *default
-  adapter: sqlite3default: &default
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-
-development:
-  <<: *default
-  adapter: sqlite3
-  database: storage/development.sqlite3
-
-test:
-  <<: *default
   adapter: sqlite3
   database: storage/test.sqlite3
 
@@ -33,8 +23,12 @@ ci:
   password: <%= ENV['CI_DB_PASSWORD'] %>
   host: <%= ENV['CI_DB_HOST'] %>
   port: <%= ENV['CI_DB_PORT'] %>
-  database: storage/test.sqlite3
 
-production:
+qa_env:
   <<: *default
-  url: <%= ENV['DATABASE_URL'] %>
+  adapter: postgresql
+  database: <%= ENV['QA_DB_NAME'] %>
+  username: <%= ENV['QA_DB_USER'] %>
+  password: <%= ENV['QA_DB_PASSWORD'] %>
+  host: <%= ENV['QA_DB_HOST'] %>
+  port: <%= ENV['QA_DB_PORT'] %>
